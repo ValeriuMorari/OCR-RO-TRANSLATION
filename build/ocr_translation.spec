@@ -11,7 +11,7 @@ from PyInstaller.utils.hooks import (
 )
 
 block_cipher = None
-project_root = Path(SPECPATH).resolve().parent.parent
+project_root = Path(SPECPATH).resolve().parent
 entry_script = project_root / "src" / "ocr_translation" / "main.py"
 
 datas = []

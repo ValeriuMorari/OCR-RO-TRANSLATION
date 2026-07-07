@@ -11,7 +11,8 @@ from PyInstaller.utils.hooks import (
 )
 
 block_cipher = None
-project_root = Path.cwd()
+project_root = Path(SPECPATH).resolve().parent.parent
+entry_script = project_root / "src" / "ocr_translation" / "main.py"
 
 datas = []
 binaries = []
@@ -93,7 +94,7 @@ hiddenimports.extend(collect_submodules("transformers"))
 hiddenimports.extend(collect_submodules("torch"))
 
 a = Analysis(
-    ["src/ocr_translation/main.py"],
+    [str(entry_script)],
     pathex=[str(project_root), str(project_root / "src")],
     binaries=binaries,
     datas=datas,

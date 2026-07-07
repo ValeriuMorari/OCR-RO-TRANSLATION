@@ -13,3 +13,4 @@ dist/
 Output/
 build/ocr_translation/
 *.log
+.idea

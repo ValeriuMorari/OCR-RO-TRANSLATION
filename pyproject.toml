@@ -1,0 +1,37 @@
+[project]
+name = "ocr-translation"
+version = "0.1.0"
+description = "Windows console app for extracting English text from PDF/DOCX, OCR fallback, and Romanian DOCX translation."
+requires-python = ">=3.10"
+dependencies = [
+  "pymupdf>=1.24.0",
+  "python-docx>=1.1.0",
+  "Pillow>=10.0.0",
+  "pytesseract>=0.3.10",
+  "transformers>=4.40.0",
+  "sentencepiece>=0.2.0",
+  "torch>=2.2.0",
+]
+
+[project.optional-dependencies]
+build = [
+  "huggingface-hub>=0.23.0",
+  "pyinstaller>=6.0.0",
+]
+test = [
+  "pytest>=8.0.0",
+]
+
+[project.scripts]
+ocr-translation = "ocr_translation.main:main"
+
+[build-system]
+requires = ["setuptools>=69.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

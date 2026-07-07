@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.py[cod]
+
+assets/models/
+assets/tesseract/
+
+Carte_Gordon_engl_fara note muzicale.pdf
+*_extracted_en.docx
+*_translated_ro.docx
+
+dist/
+Output/
+build/ocr_translation/
+*.log

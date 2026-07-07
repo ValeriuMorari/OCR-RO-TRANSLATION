@@ -1,0 +1,50 @@
+name: Build Windows Installer
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+
+jobs:
+  build-windows:
+    name: Build Windows installer
+    runs-on: windows-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          architecture: "x64"
+
+      - name: Install Windows packaging tools
+        shell: powershell
+        run: |
+          choco install tesseract innosetup --yes --no-progress
+
+      - name: Build installer
+        shell: powershell
+        run: |
+          .\scripts\build_windows.ps1 -PythonCommand "python"
+
+      - name: Upload installer artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OCRTranslationSetup
+          path: Output/OCRTranslationSetup.exe
+          if-no-files-found: error
+
+      - name: Upload PyInstaller folder for diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: OCRTranslation-dist-diagnostics
+          path: dist/OCRTranslation
+          if-no-files-found: ignore

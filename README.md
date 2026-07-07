@@ -1,6 +1,18 @@
-# OCR Translation Console App
+# OCR Translation App
 
-Python console application for Windows that asks for a `.pdf` or `.docx` path, extracts English text, uses OCR for image/scanned content, translates the text to Romanian, and writes two text-only Word documents.
+Python application for Windows that reads a `.pdf` or `.docx`, extracts English text, uses OCR for image/scanned content, translates the text to Romanian, and writes two text-only Word documents.
+
+The packaged Windows installer launches a simple graphical interface with this button:
+
+```text
+CLICK AICI PENTRU A INCARCA PDF
+```
+
+After processing finishes, the GUI shows:
+
+```text
+AM TERMINAT, BRAVO!, CU DRAG, VALERIU
+```
 
 ## Outputs
 
@@ -11,6 +23,19 @@ For an input such as `book.pdf`, the app writes:
 
 ## Development Run
 
+GUI mode:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\activate
+pip install -r requirements.txt
+python scripts\download_model.py
+python scripts\check_environment.py
+python -m ocr_translation.gui
+```
+
+Console/debug mode:
+
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\activate
@@ -20,7 +45,7 @@ python scripts\check_environment.py
 python -m ocr_translation.main
 ```
 
-The app does not use command-line arguments. Paste the document path when prompted.
+The packaged GUI does not use command-line arguments. The console/debug entrypoint still prompts for a path.
 
 ## OCR Requirement
 
@@ -58,6 +83,7 @@ Output\OCRTranslationSetup.exe
 ```
 
 The user does not need Python, Tesseract, or the Hugging Face model installed separately.
+The installed Start Menu/Desktop shortcut opens the GUI application.
 
 ### 1. Prepare bundled Tesseract
 

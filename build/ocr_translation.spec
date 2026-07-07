@@ -12,7 +12,7 @@ from PyInstaller.utils.hooks import (
 
 block_cipher = None
 project_root = Path(SPECPATH).resolve().parent
-entry_script = project_root / "src" / "ocr_translation" / "main.py"
+entry_script = project_root / "src" / "ocr_translation" / "gui.py"
 
 datas = []
 binaries = []
@@ -22,6 +22,7 @@ hiddenimports = [
     "PIL",
     "pytesseract",
     "sentencepiece",
+    "tkinter",
     "torch",
     "transformers",
 ]
@@ -119,7 +120,7 @@ exe = EXE(
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
-    console=True,
+    console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,

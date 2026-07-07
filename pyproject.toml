@@ -24,6 +24,7 @@ test = [
 
 [project.scripts]
 ocr-translation = "ocr_translation.main:main"
+ocr-translation-gui = "ocr_translation.gui:main"
 
 [build-system]
 requires = ["setuptools>=69.0"]
